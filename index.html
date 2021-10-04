@@ -9,16 +9,18 @@
 <script>
     function showData(data) 
     {   
-        console.log("hola")
+        var printer = document.getElementById("printer");
+        printer.innerHTML += "entrando a show data";
         var o = JSON.parse(data); 
         data = o.Search;
         for (index in data) 
         { 
-            console.log(data[index].name);   
+            printer.innerHTML += data[index].name;   
         } 
     }
     function getData()
     {
+        
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://github.com/data-nba/index/data.txt', 'true');
         xhr.onreadystatechange = function()
@@ -35,5 +37,6 @@
 </script>
 <body>
     <button onclick="getData()">prueba</button>
+    <p id="printer"></p>
 </body>
 </html>
