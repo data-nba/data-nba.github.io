@@ -21,10 +21,17 @@
     function getData()
     {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET","data.txt", false);
+        xhr.open("GET","data.txt", true);
+        xhr.onreadystatechange = function() 
+        {
+            if (xhr.readyState === 4) 
+            {
+                showData(xhr.responseText);  
+            }
+        };
         xhr.send(null);
-        alert(xhr.responseText);
-        showData(xhr.responseText)
+        //alert(xhr.responseText);
+        //showData(xhr.responseText)
     }
 
 </script>
