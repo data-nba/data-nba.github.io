@@ -24,10 +24,9 @@
         xhr.open("GET","data.txt", false);
         xhr.send(null);
         alert(xhr.responseText);
+        showData(xhr.responseText)
     }
-    
 
-    
 </script>
 <body>
     <button onclick="getData()">prueba</button>
