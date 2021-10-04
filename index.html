@@ -10,12 +10,12 @@
     function showData(data) 
     {   
         var printer = document.getElementById("printer");
-        printer.innerHTML += "entrando a show data " + data;
+        
         var o = JSON.parse(data); 
         data = o.Search;
         for (index in data) 
         { 
-            printer.innerHTML += data[index].name;   
+            printer.innerHTML += data[index].name; + " ";
         } 
     }
     function getData()
