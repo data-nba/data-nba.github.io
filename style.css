@@ -1,3 +1,8 @@
+html
+{
+    font-size: 1vw;
+}
+
 body{
     padding: 0;
     margin: 0;
@@ -44,7 +49,7 @@ overflow: hidden;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 1.7vw;
+    font-size: 1.7rem;
     
 }
 
@@ -75,7 +80,7 @@ overflow: hidden;
     text-align: center;
    color: rgb(255, 255, 255);
 
-font-size: 5vw;
+font-size: 5rem;
 grid-column-start: 2;
 grid-column-end: 2;
 }
@@ -84,7 +89,7 @@ grid-column-end: 2;
     font-family: 'Lobster', cursive;
   background: orange;
  padding: 0.2em;
-  font-size: 5.2vw;
+  font-size: 5.2rem;
   color: var(--principalColor);
   border-radius: 10px;
   -webkit-border-radius: 10px;
