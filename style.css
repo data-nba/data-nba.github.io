@@ -50,7 +50,6 @@ overflow: hidden;
     justify-content: space-evenly;
     align-items: center;
     font-size: 1.7rem;
-    
 }
 
 .option{
@@ -64,7 +63,7 @@ overflow: hidden;
 }
 
 .option:hover{
-    color: var(--principalColor);
+    color: orange;
     text-decoration: wavy;
 }
 
@@ -88,7 +87,7 @@ font-size: 5rem;
   background: orange;
  padding: 0.2em;
   font-size: 5.2rem;
-  color: var(--principalColor);
+  color: black;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -98,8 +97,7 @@ font-size: 5rem;
 
 .leaders-presentation
 {
-    /*color: var(--principalColor);*/
-    color: black;
+    font-weight: 700;
     font-size: 3rem;
 }
 
@@ -118,7 +116,6 @@ font-size: 5rem;
     margin: 0;
     text-align: center;
     margin: 0 auto;
-    
 }
 
 .categoria
@@ -127,7 +124,6 @@ font-size: 5rem;
     font-size: 2.2rem;
     margin: 0;
     margin-top: 10px;
-    
 }
 
 .line-categoria{
@@ -136,7 +132,6 @@ font-size: 5rem;
     width: 90%;
     margin: 0 auto;
     margin-bottom: 10px;
-    
 }
 
 .content-leader
@@ -149,17 +144,20 @@ font-size: 5rem;
 
 .no-leader
 {
+        font-weight: 500;
     width: 20%;
     text-align: left;
     margin-left: 2%;
 }
 
 .name-leader{
+    font-weight: 500;
     width: 60%;
     text-align: center;
 }
 
 .cant-leader{
+    font-weight: 500;
     width: 20%;
     text-align: right;
     margin-right: 2%;
