@@ -19,12 +19,13 @@
     {   
         var printer = document.getElementById("printer");
         
-        var o = JSON.parse(data); 
-        data = o.Search;
+        var o = JSON.parse(data);
+        printer.innerHTML = 0;
+        /*data = o.Search;
         for (index in data) 
         { 
             printer.innerHTML += data[index].name; + "<br> ";
-        } 
+        } */
     }
     function getData()
     {
@@ -46,13 +47,14 @@
 
 </script>
 <body>
+    <p id="printer"></p>
     <section class="mainSection">
         <div class="head">
             <div class="container-options">
                 <div class="logo"><h2>logo</h2></div>
                 <div class="options">
                     <a class="option" href="#"><b>Líderes históricos</b></a>
-                    <a class="option" href="#"><b>Estadísticas</b></a>
+                    <a class="option" href="stats.html"><b>Estadísticas</b></a>
                     <a class="option" href="#"><b>Buscador PRO</b></a>
                     <a class="option" href="#"><b>Quiénes somos</b></a>
                 </div>
