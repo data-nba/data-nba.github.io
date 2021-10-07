@@ -12,53 +12,21 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
     <script src="datajson.js"></script>
     <script src="data.js"></script>
-   
 </head>
-<script>
-    function showData(data) 
-    {   
-        var printer = document.getElementById("printer");
-        
-        var o = JSON.parse(data);
-        console.log(o)
-        printer.innerHTML = o;
-        /*data = o.Search;
-        for (index in data) 
-        { 
-            printer.innerHTML += data[index].name; + "<br> ";
-        } */
-    }
-    function getData()
-    {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET","data.txt", true);
-        xhr.onreadystatechange = function() 
-        {
-            if (xhr.readyState === 4) 
-            {
-                showData(xhr.responseText);  
-            }
-        };
-        xhr.send(null);
-        //alert(xhr.responseText);
-        //showData(xhr.responseText)
-    }
 
-   window.onload = showLeaders
-
-</script>
 <body>
     <section class="mainSection">
         <div class="head">
             <div class="container-options">
-                <div class="logo"><h2>logo</h2></div>
+                <div id="logo" class="logo"><h2>logo</h2></div>
                 <div class="options">
                     <a class="option" href="#"><b>Líderes históricos</b></a>
                     <a class="option" href="stats.html"><b>Estadísticas</b></a>
                     <a class="option" href="#"><b>Buscador PRO</b></a>
-                    <a class="option" href="#"><b>Quiénes somos</b></a>
+                    <a class="option" href="#"><b>Más</b></a>
                 </div>
             </div>
 

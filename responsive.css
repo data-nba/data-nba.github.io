@@ -1,0 +1,38 @@
+@media (max-width: 499px)
+{
+    html
+    {
+        font-size: 1.7vw;
+    }
+
+    .container-leaders
+    {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+    html
+    {
+        font-size: 1.5vw;
+    }
+
+    .container-leaders
+    {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media (min-width: 700px) and (max-width: 900px) {
+
+    html
+    {
+        font-size: 1.2vw;
+    }
+
+    .container-leaders
+    {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+

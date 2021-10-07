@@ -4,6 +4,10 @@ function singleSeasonStat(player_name, stat)
     this.stat = stat;
 }
 
+function logo(){
+    document.getElementById("logo").innerHTML = document.body.clientWidth;
+}
+
 function showLeaders()
 {
     var seasonStats = data['2021'];
@@ -49,3 +53,6 @@ function showLeaders()
         }
 
 }
+
+window.onload = showLeaders;
+window.onresize = logo;
