@@ -46,7 +46,7 @@ overflow: hidden;
 
 .container-options{
     width: 100%;
-    height: 45%;
+    height: calc(50% - 5px);
     display: flex;
     align-items: center;
 }
@@ -83,7 +83,7 @@ overflow: hidden;
 
 .container-titleMainSection{
     text-align: center;
-    height: 40%;
+    height: calc(50% - 5px);
     
 }
 
