@@ -12,6 +12,10 @@
     .leader{
         width: 70%;
     }
+
+    .content-leader{
+        font-size: 1.7rem;
+    }
 }
 
 @media (min-width: 400px) and (max-width: 499px)
@@ -29,6 +33,12 @@
     .leader{
         width: 70%;
     }
+
+    .content-leader{
+        font-size: 1.7rem;
+    }
+
+    
 }
 
 @media (min-width: 500px) and (max-width: 699px) {
@@ -45,6 +55,8 @@
     .leader{
         width: 70%;
     }
+
+    
 }
 
 @media (min-width: 700px) and (max-width: 900px) {
