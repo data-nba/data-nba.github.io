@@ -1,17 +1,50 @@
-function singleSeasonStat(player_name, stat)
+function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P)
 {
     this.name = player_name;
-    this.stat = stat;
+    this.PTS = PTS;
+    this.REB = REB;
+    this.AST = AST;
+    this.STL = STL;
+    this.BLK = BLK;
+    this._3P = _3P;
+    this.g = g;
 }
+
+var index = {'G':0, '_3P':6, 'REB':15, 'AST':16, 'STL':17, 'BLK':18, 'PTS':21 };
 
 function logo(){
     document.getElementById("logo").innerHTML = document.body.clientWidth;
 }
 
+function showInCategoria(stats, stat, totals)
+{
+    var statsToShow = stats.sort(function(a, b)
+        {
+            var ag = a.g;
+            var bg = b.g;
+            if (totals)
+            {
+                ag = 1;
+                bg = 1;
+            }
+
+            if (a[stat]/ag > b[stat]/bg)
+                return -1;
+
+            if(a[stat]/ag < b[stat]/bg)
+                return 1;
+
+            return 0;
+        }).slice(0, 8);
+
+        return statsToShow;
+}
+
 function showLeaders()
 {
     var seasonStats = data['2021'];
-    var ptsLeaders = [];
+    console.log(seasonStats)
+    var stats = [];
 
     Object.keys(seasonStats).forEach(playerID => 
         {
@@ -29,27 +62,26 @@ function showLeaders()
 
             var pts = parseFloat(playerStats[team][21]);
             var g = parseFloat(playerStats[team][0]);
-            var pts_g = pts/g
-            ptsLeaders.push(new singleSeasonStat(name, pts_g))
+            var reb = parseFloat(playerStats[team][index['REB']])
+            var ast = parseFloat(playerStats[team][index['AST']])
+            var stl = parseFloat(playerStats[team][index['STL']])
+            var blk = parseFloat(playerStats[team][index['BLK']])
+            var _3p = parseFloat(playerStats[team][index['_3P']])
+            stats.push(new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p))
         });
 
-        var statsToShow = ptsLeaders.sort(function(a, b)
-        {
-            if (a.stat > b.stat)
-                return -1;
-
-            if(a.stat < b.stat)
-                return 1;
-
-            return 0;
-        }).slice(0, 8);
-
-        var content = document.querySelectorAll("#PTS .content-leader");
+        var content = document.getElementsByClassName("leader");
+        
         for(var i = 0; i < content.length; i++)
         {
-            console.log(content[i].childNodes)
-            content[i].childNodes[3].innerHTML = statsToShow[i].name;
-            content[i].childNodes[5].innerHTML = statsToShow[i].stat.toFixed(2);
+            var statsToShow = showInCategoria(stats, content[i].id)
+            var content_leader = content[i].getElementsByClassName("content-leader");
+            for(var j = 0; j < content_leader.length; j++)
+            {
+                var children = content_leader[j].childNodes;
+                children[3].innerHTML = statsToShow[j].name;
+                children[5].innerHTML = (statsToShow[j][content[i].id]/statsToShow[j].g).toFixed(1);
+            }
         }
 
 }
