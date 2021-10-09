@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html id="html" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data NBA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <script src="datajson.js"></script>
+    <script src="data.js"></script>
+
+    <style>
+        .line-categoria{
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<script>
+
+    window.onload = showHistoricStats
+</script>
+
+<body>
+        <div class="head">
+            <div class="top-margin"></div>
+            <div class="container-options">
+                <div id="logo" class="logo"><h2>logo</h2></div>
+                <div class="options">
+                    <a class="option" href="index.html"><b>Inicio</b></a>
+                    <a class="option mypage" href="historicos.html"><b>Líderes históricos</b></a>
+                    <a class="option" href="stats.html"><b>Estadísticas</b></a>
+                    <a class="option" href="#"><b>Buscador PRO</b></a>
+                </div>
+            </div>
+
+            <div class="container-titleMainSection">
+                <h1 class="titleMainSetion">
+                    Bienvenido a <span>Data NBA</span> 
+                </h1>
+            </div>
+
+        </div>
+        
+<div>
+    <div class="leaders-presentation-container">
+        <h2 class="leaders-presentation">Líderes históricos</h2>
+        <div class="totals-perGame">
+            <div class="totals"></div>
+            <div class="perGame"></div>
+        </div>
+    </div>
+    <div class="container-leaders">
+        <div id="PTS" class="leader">
+            <div class="container-categoria">
+            <h2 class="categoria">Puntos</h2>
+            <div class="line-categoria"></div>
+        </div>
+        <div class="content-leader">
+            <div class="no-leader">1.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+        <div class="content-leader">
+            <div class="no-leader">2.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+
+        <div class="end-content-leader"></div>
+        <div class="content-leader">
+            <div class="no-leader">3.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">4.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">5.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">6.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">7.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+
+        <div class="end-leader"></div>
+        </div>
+        <div id="REB" class="leader">
+            <div class="container-categoria">
+            <h2 class="categoria">Rebotes</h2>
+            <div class="line-categoria"></div>
+        </div>
+
+        
+        <div class="content-leader">
+            <div class="no-leader">1.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+        <div class="content-leader">
+            <div class="no-leader">2.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+
+        <div class="end-content-leader"></div>
+        <div class="content-leader">
+            <div class="no-leader">3.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">4.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">5.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">6.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">7.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+
+        <div class="end-leader"></div>
+    </div>
+        <div id="AST" class="leader">
+             <div class="container-categoria">
+            <h2 class="categoria">Asistencias</h2>
+            <div class="line-categoria"></div>
+        </div>
+        
+        <div class="content-leader">
+            <div class="no-leader">1.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+        <div class="content-leader">
+            <div class="no-leader">2.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+
+        <div class="end-content-leader"></div>
+        <div class="content-leader">
+            <div class="no-leader">3.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">4.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">5.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">6.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+        <div class="end-content-leader"></div>
+
+        <div class="content-leader">
+            <div class="no-leader">7.</div>
+            <div class="name-leader"></div>
+            <div class="cant-leader"></div>
+        </div>
+
+        <div class="end-leader"></div>
+    </div>
+
+    
+    <div id="STL" class="leader">
+        <div class="container-categoria">
+       <h2 class="categoria">Robos</h2>
+       <div class="line-categoria"></div>
+   </div>
+   
+   <div class="content-leader">
+       <div class="no-leader">1.</div>
+       <div class="name-leader"></div>
+       <div class="cant-leader"></div>
+   </div>
+   <div class="end-content-leader"></div>
+   <div class="content-leader">
+       <div class="no-leader">2.</div>
+       <div class="name-leader"></div>
+       <div class="cant-leader"></div>
+   </div>
+
+   <div class="end-content-leader"></div>
+   <div class="content-leader">
+       <div class="no-leader">3.</div>
+       <div class="name-leader"></div>
+       <div class="cant-leader"></div>
+   </div>
+   <div class="end-content-leader"></div>
+
+   <div class="content-leader">
+       <div class="no-leader">4.</div>
+       <div class="name-leader"></div>
+       <div class="cant-leader"></div>
+   </div>
+   <div class="end-content-leader"></div>
+
+   <div class="content-leader">
+       <div class="no-leader">5.</div>
+       <div class="name-leader"></div>
+       <div class="cant-leader"></div>
+   </div>
+   <div class="end-content-leader"></div>
+
+   <div class="content-leader">
+       <div class="no-leader">6.</div>
+       <div class="name-leader"></div>
+       <div class="cant-leader"></div>
+   </div>
+   <div class="end-content-leader"></div>
+
+   <div class="content-leader">
+       <div class="no-leader">7.</div>
+       <div class="name-leader"></div>
+       <div class="cant-leader"></div>
+   </div>
+
+   <div class="end-leader"></div>
+</div>
+
+
+<div id="BLK" class="leader">
+    <div class="container-categoria">
+   <h2 class="categoria">Tapones</h2>
+   <div class="line-categoria"></div>
+</div>
+
+<div class="content-leader">
+   <div class="no-leader">1.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+<div class="content-leader">
+   <div class="no-leader">2.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+
+<div class="end-content-leader"></div>
+<div class="content-leader">
+   <div class="no-leader">3.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">4.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">5.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">6.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">7.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+
+<div class="end-leader"></div>
+</div>
+
+
+<div id="_3P" class="leader">
+    <div class="container-categoria">
+   <h2 class="categoria">Triples</h2>
+   <div class="line-categoria"></div>
+</div>
+
+<div class="content-leader">
+   <div class="no-leader">1.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+<div class="content-leader">
+   <div class="no-leader">2.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+
+<div class="end-content-leader"></div>
+<div class="content-leader">
+   <div class="no-leader">3.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">4.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">5.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">6.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+<div class="end-content-leader"></div>
+
+<div class="content-leader">
+   <div class="no-leader">7.</div>
+   <div class="name-leader"></div>
+   <div class="cant-leader"></div>
+</div>
+
+<div class="end-leader"></div>
+</div>
+
+
+
+
+
+
+    </div>
+    
+
+</div>
+
+<div class="line-footer"></div>
+<div class="footer">
+    <div class="content-footer">
+        <h2>Síguenos en twitter</h2>
+    </div>
+</div>
+</body>
+</html>

@@ -76,6 +76,10 @@ overflow: hidden;
     -o-transition: 0.2s ease-in;
 }
 
+.mypage{
+    color:orange;
+}
+
 .option:hover{
     color: orange;
     text-decoration: wavy;
