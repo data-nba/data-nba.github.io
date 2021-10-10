@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data NBA | Buscador PRO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="buscador.css">
+</head>
+
+<script>
+
+    function clickTypeSearch()
+    {
+        var radio = this.querySelector("input");
+        radio.checked = true;
+        this.className += ' selected';
+
+        var divs = document.getElementsByClassName("container-radio-search");
+        for(var i = 0; i < divs.length; i++)
+        {
+            if(divs[i].id != this.id)
+                divs[i].className = divs[i].className.split(' ')[0]
+        }
+
+    }
+
+    function clickStatType()
+    {
+        var radio = this.querySelector("input");
+        radio.checked = true
+        var divsSelectStat = document.getElementsByClassName("radio-per_game-totals");
+        var index = (radio.id == "statsPerGameRadio") ? 1 : 0;
+        console.log(divsSelectStat[0].className + " - " + divsSelectStat[1].className + " " + index)
+        divsSelectStat[index].className = divsSelectStat[index].className.split(' ')[0];
+        this.className += " radio-per_game-totals-selected"
+    }
+
+    function listen()
+    {
+        var divSearchType = document.getElementsByClassName("container-radio-search")
+        divSearchType[0].querySelector("input").checked = true;
+        divSearchType[0].className += ' selected'
+        for(var i = 0; i < divSearchType.length; i++)
+        {
+            divSearchType[i].addEventListener("click", clickTypeSearch, false)
+        }
+
+        var divsSelectStat = document.getElementsByClassName("radio-per_game-totals");
+        divsSelectStat[0].querySelector("input").checked = true;
+        divsSelectStat[0].className += " radio-per_game-totals-selected"
+
+        for(var i = 0; i < divsSelectStat.length; i++)
+        {
+            divsSelectStat[i].addEventListener("click", clickStatType, false)
+        }
+    }
+
+    window.onload = listen
+
+</script>
+
+<body>
+    <div class="search-type-container">
+        <div class="container-radio-search" id="single_season">
+            <input name="a" class="radio radio-search" type="radio"/>
+            <div class="content-season-type">
+                <h2>Temporada Individual</h2>
+                <p><b>Ejemplo: Jugador con más puntos en una temporada</b> </p>
+
+            </div>
+        </div>
+
+        <div class="container-radio-search" id="combined_seasons">
+            <input name="a" class="radio radio-search" type="radio"/>
+            <div class="content-season-type">
+                <h2>Temporadas Combinadas</h2>
+                <p>Ejemplo: Jugador con más asistencias en la historia</p>
+            </div>
+        </div>
+
+        <div class="container-radio-search" id="total_seasons">
+            <input name="a" class="radio radio-search" type="radio"/>
+            <div class="content-season-type">
+                <h2>Total de Temporadas</h2>
+                <p>Ejemplo: Jugador con más temporadas de 20 puntos</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-search">
+        <div class="filter">
+            <div class="container-filter-item">
+                <div class="container-title-filter-item">
+                    <h2 >Temporadas</h2>
+                </div>
+
+                <div class="filter-item-season">
+                    <div class="since-to">
+                        <p>Desde</p>
+                        <select name="" id="season-since-filter">
+                            <option value="1">1903-44</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903-44</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903-44</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903-44</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                        </select>
+                    </div>
+                    <div class="since-to">
+                        <p>Hasta</p>
+                        <select name="" id="season-to-filter">
+                            <option value="1">2020-21</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                            <option value="1">1903</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="container-filter-item">
+                <div class="container-title-filter-item">
+                    <h2 >Estadísticas</h2>
+                </div>
+                <div class="filter-item-stats">
+                    <div class="radio-per_game-totals">
+                        <input type="radio" name="stats" id="statsPerGameRadio">
+                        <p>Por partido</p>
+                    </div>
+                    <div class="radio-per_game-totals">
+                        <input type="radio" name="stats" id="statsTotalsRadio">
+                        <p>Totales</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-filter-item">
+                <div class="container-title-filter-item">
+                    <h2 >Filtros</h2>
+                </div>
+                
+            <div>
+
+        </div>
+
+        <div class="table">
+
+        </div>
+    </div>
+</body>
+</html>
