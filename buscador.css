@@ -5,7 +5,6 @@ html{
 body{
     margin: 0;
     padding: 0;
-    margin-top: 20px;
     background: #e4e4e8;
     font-family: 'Maven Pro', sans-serif;
 }
@@ -16,7 +15,7 @@ body{
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    
+    margin-top: 20px;
    
 }
 
@@ -91,13 +90,11 @@ p{
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    height: calc(100vh - 25px - 15vh - 20px);
 }
 
 .filter
 {
     width: 30%;
-    overflow-y: scroll;
 }
 
 .table
