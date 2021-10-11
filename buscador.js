@@ -7,7 +7,7 @@ function Filter(stat, operator, value)
 
 function search(data, filter, perGame)
 {
-    
+
 }
 
 function remove_filter(ev)
@@ -90,6 +90,7 @@ function add_filter()
 
 function add_seasons_sinceTo_andSelectOrder()
 {
+    console.log(parseFloat("") + 5);
     add_filter_options(document.getElementById("order_by"));
 
     var since = document.getElementById("season-since-filter");
