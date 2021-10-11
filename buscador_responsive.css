@@ -1,0 +1,38 @@
+@media (min-width: 700px) and (max-width: 800px)
+{
+    .content-search
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .filter
+    {
+        width: 50%;
+    }
+
+    h2{
+        font-size: 2.4rem;
+    }
+    
+    p{
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .select
+    {
+        font-size: 1.5rem;
+    }
+
+    .input
+    {
+        font-size: 1.5rem;
+    }
+
+    .container-radio-search
+    {
+        width: 31%;
+    }
+}
