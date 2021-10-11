@@ -88,6 +88,7 @@ p{
     margin-top: 25px;
     width: 95%;
     display: flex;
+    justify-content: space-between;
     margin-left: auto;
     margin-right: auto;
 }
@@ -234,12 +235,9 @@ p{
     align-items: center;
 }
 
-.filter-added>select{
-    font-size: 1.3rem;
-    text-align: center;
-}
 
-.filter-added>input
+
+input
 {
     text-align: center;
     font-size: 1.3rem;
@@ -295,7 +293,7 @@ p{
     justify-content: space-evenly;
 }
 
-.filter-order-by>select{
+select{
     font-size: 1.3rem;
     text-align: center;
 }
@@ -324,4 +322,15 @@ backdrop-filter: blur(2.4px);
 #get_result:active
 {
     background: #dd9043;
+}
+
+.container-table
+{
+    width: 65%;
+    
+}
+
+table{
+    border: 1;
+    cellspacing:3;
 }
