@@ -72,7 +72,8 @@
     }
 
 
-    window.onload = listen
+    window.addEventListener('load', listen, false)
+
 
 </script>
 
@@ -135,36 +136,13 @@
                     <div class="since-to">
                         <p>Desde</p>
                         <select name="" id="season-since-filter">
-                            <option value="1">1903-44</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903-44</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903-44</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903-44</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
+                            
                         </select>
                     </div>
                     <div class="since-to">
                         <p>Hasta</p>
                         <select name="" id="season-to-filter">
-                            <option value="1">2020-21</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
-                            <option value="1">1903</option>
+                            
                         </select>
                     </div>
                 </div>
@@ -203,9 +181,7 @@
                 </div>
                 <div class="filter-order-by">
                     <select name="" id="order_by">
-                        <option value="">PTS</option>
-                        <option value="">AST</option>
-                        <option value="">REB</option>
+                        
                     </select>
 
                     <select name="" id="asc_or_desc">
@@ -228,6 +204,7 @@
                         <th>Rk</th>
                         <th>Jugador</th>
                         <th>G</th>
+                        <th>MP</th>
                         <th>PTS</th>
                         <th>REB</th>
                         <th>AST</th>
