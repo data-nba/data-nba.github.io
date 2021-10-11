@@ -52,7 +52,6 @@
     {
         //agregar filtro
         document.querySelector(".add-filter").addEventListener('click', add_filter, false);
-        document.getElementById("get_result").addEventListener('click', get_results, false);
 
         var divSearchType = document.getElementsByClassName("container-radio-search")
         divSearchType[0].querySelector("input").checked = true;
@@ -191,48 +190,11 @@
                     <h2 >Filtros</h2>
                 </div>
                 <div class="filter-item-filter">
-                    <div class="filter-added">
-                        <select name="" id="stat-filter-added">
-                            <option value=""><p>PTS</p></option>
-                            <option value=""><p>REB</p></option>
-                            <option value=""><p>AST</p></option>
-                        </select>
-                        <select name="" id="less-equal-greater">
-                            <option value=""><p>>=</p></option>
-                            <option value=""><p>=</p></option>
-                            <option value=""><p><</p></option>
-                        </select>
-                        <input type="number" name="" step="0.1" min="0" class="value-filter-stat">
-                        
-                            <div class="remove-filter"><div class="line-remove-filter"></div></div>
-                        
-                        
-                    </div>
-                    <div class="end-filter-stat"></div>
-
-                    <div class="filter-added">
-                        <select name="" id="stat-filter-added">
-                            <option value=""><p>PTS</p></option>
-                            <option value=""><p>REB</p></option>
-                            <option value=""><p>AST</p></option>
-                        </select>
-                        <select name="" id="less-equal-greater">
-                            <option value=""><p>>=</p></option>
-                            <option value=""><p>=</p></option>
-                            <option value=""><p><</p></option>
-                        </select>
-                        <input type="number" name="" step="0.1" min="0" class="value-filter-stat">
-                        
-                            <div class="remove-filter"><div class="line-remove-filter"></div></div>
-                        
-                        
-                    </div>
-                    <div class="end-filter-stat"></div>
 
                     <div class="add-filter"><p>Filtro</p> <p class="plus">+</p></div>
-                    
+
                 </div>
-               
+
             </div>
 
             <div class="container-filter-item">
