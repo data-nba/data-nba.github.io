@@ -22,7 +22,6 @@ body{
 
 .container-radio-search{
     width: 30%;
-    height: 15vh;
     border-radius: 10px;
     cursor: pointer;
 background: orange;
@@ -30,6 +29,9 @@ border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(2.4px);
 -webkit-backdrop-filter: blur(2.4px);
+position: relative;
+padding-top: 5px;
+padding-bottom: 5px;
 }
 .container-radio-search:hover
 {
@@ -61,7 +63,7 @@ p{
     width: 15px;
     height: 15px;
     position: absolute;
-    left: 8px;
+    left: 5px;
     top: 5px;
     
 }
@@ -138,13 +140,11 @@ p{
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     width: 45%;
-    height: 7vh;
     max-height: 60px;
     border: solid black 1px;
     display: flex;
     align-items: center;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px;
     justify-content: space-between;
 }
 
@@ -167,13 +167,11 @@ p{
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     width: 40%;
-    height: 7vh;
     max-height: 60px;
     border: solid black 1px;
     display: flex;
     align-items: center;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding: 5px;
     justify-content: center;
     position: relative;
     cursor: pointer;
@@ -181,8 +179,8 @@ p{
 
 .radio-per_game-totals>input{
     position: absolute;
-    left: 0;
-    margin-left: 5px;
+    left: 5px;
+    top: 5px;
 }
 
 .radio-per_game-totals:hover

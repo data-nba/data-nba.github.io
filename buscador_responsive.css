@@ -14,7 +14,7 @@
 
     html
     {
-        font-size: 2.9vw;
+        font-size: 3.3vw;
     }
 
     .content-search
@@ -49,7 +49,7 @@
 
     html
     {
-        font-size: 2.5vw;
+        font-size: 2.9vw;
     }
 
     .content-search
@@ -83,7 +83,7 @@
 
     html
     {
-        font-size: 2vw;
+        font-size: 2.5vw;
     }
 
     .content-search
@@ -113,12 +113,12 @@
     .container-radio-search
     {
         margin-bottom: 10px;
-        width: 50%;
+        width: 60%;
     }
 
     html
     {
-        font-size: 1.7vw;
+        font-size: 2.2vw;
     }
 
     .content-search
@@ -129,7 +129,7 @@
     
     .filter
     {
-        width: 60%;
+        width: 80%;
     }
 
     .container-table{
@@ -139,6 +139,19 @@
 
 @media (min-width: 700px) and (max-width: 800px)
 {
+
+    .search-type-container
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container-radio-search
+    {
+        margin-bottom: 10px;
+        width: 60%;
+    }
+
     .content-search
     {
         flex-direction: column;
@@ -147,12 +160,12 @@
     
     .filter
     {
-        width: 50%;
+        width: 70%;
     }
 
    html
    {
-       font-size: 1.2vw;
+       font-size: 1.5vw;
    }
 
    h2
@@ -164,10 +177,6 @@
        font-size: 1.4rem;
    }
 
-    .container-radio-search
-    {
-        width: 31%;
-    }
 
     .container-table{
         width: 95%;

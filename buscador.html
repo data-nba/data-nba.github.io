@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="buscador.css">
     <link rel="stylesheet" href="head.css">
     <link rel="stylesheet" href="buscador_responsive.css">
+    <script src="buscador.js"></script>
     
 
 </head>
@@ -49,6 +50,10 @@
 
     function listen()
     {
+        //agregar filtro
+        document.querySelector(".add-filter").addEventListener('click', add_filter, false);
+        document.getElementById("get_result").addEventListener('click', get_results, false);
+
         var divSearchType = document.getElementsByClassName("container-radio-search")
         divSearchType[0].querySelector("input").checked = true;
         divSearchType[0].className += ' selected'
@@ -66,6 +71,7 @@
             divsSelectStat[i].addEventListener("click", clickStatType, false)
         }
     }
+
 
     window.onload = listen
 
