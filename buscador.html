@@ -50,12 +50,32 @@
         this.className += " radio-per_game-totals-selected"
     }
 
+    function onScroll(ev)
+    {
+        var s1;
+        var s2;
+        
+        if(ev.target.id == "scroll"){
+            s1 = document.getElementById("scroll")
+            s2 = document.querySelector(".container-table")
+        }
+            
+        else{
+            s2 = document.getElementById("scroll")
+            s1 = document.querySelector(".container-table")
+        }
+
+        s2.scrollLeft = s1.scrollLeft;
+    }
+
     function listen()
     {
         //agregar filtro
 
         document.getElementById('get_result').addEventListener("click", get_results, false)
         document.querySelector(".add-filter").addEventListener('click', add_filter, false);
+        document.querySelector(".container-table").addEventListener('scroll', onScroll, false)
+        document.getElementById("scroll").addEventListener('scroll', onScroll, false)
 
         var divSearchType = document.getElementsByClassName("container-radio-search")
         divSearchType[0].querySelector("input").checked = true;
@@ -75,9 +95,17 @@
         }
     }
 
+    function scrollWidth()
+    {
+        var table_body = document.getElementById("table_body");
+        var scroll = document.querySelector(".top-scroll");
+        scroll.style.width = table_body.clientWidth + "px";
+        console.log(table_body.clientWidth)
+        console.log(scroll.clientWidth)
+    }
 
-    window.addEventListener('load', listen, false)
-
+    window.addEventListener('load', listen, false);
+    window.onresize = scrollWidth;
 
 </script>
 
@@ -113,7 +141,7 @@
         </div>
 
         <div class="container-radio-search" id="combined_seasons">
-            <input name="a" class="radio radio-search" type="radio"/>
+            <input id="combined_season_radio" name="a" class="radio radio-search" type="radio"/>
             <div class="content-season-type">
                 <h2>Temporadas Combinadas</h2>
                 <p>Ejemplo: Jugador con más asistencias en la historia</p>
@@ -121,7 +149,7 @@
         </div>
 
         <div class="container-radio-search" id="total_seasons">
-            <input name="a" class="radio radio-search" type="radio"/>
+            <input id="total_seasons_radio" name="a" class="radio radio-search" type="radio"/>
             <div class="content-season-type">
                 <h2>Total de Temporadas</h2>
                 <p>Ejemplo: Jugador con más temporadas de 20 puntos</p>
@@ -199,7 +227,10 @@
             <div id="get_result"><p>Buscar</p> </div>
 
         </div>
-
+        <div class="table-zone">
+        <div id="scroll" class="top-scroll-container hide-scroll">
+            <div class="top-scroll"></div>
+        </div>
         <div class="container-table">
             <table id="my_table" class="table table-striped table-responsive table-hover table-bordered">
                 <thead id="table_head">
@@ -209,6 +240,7 @@
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 </body>
 </html>

@@ -1,7 +1,9 @@
 var index = {'G':0, 'MP':2, 'FG':3, 'FGA':4, '3P':6, '3PA':7, 'FT':10, 'FTA':11, 'OREB':13, 'DREB':14, 'REB':15, 'AST':16, 'STL':17, 'BLK':18, 'TOV':19, "PF":20, 'PTS':21 };
 console.log(NaN < 1)
-function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP, season )
+function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP, season, player_id)
 {
+    this.Temps = 1;
+    this.player_id = player_id;
     this.name = player_name;
     this.PTS = PTS;
     this.REB = REB;
@@ -31,6 +33,9 @@ function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DRE
     var me = this;
     this.sum = function(g, pts, reb, ast, stl, blk, _3p, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP)
     {
+
+        this.Temps++;
+        me.G += g;
         if(!isNaN(pts))
             me.PTS = (isNaN(me.PTS)) ? pts : me.PTS + pts;
 
@@ -156,17 +161,26 @@ function parseSeasonStats(seasonStats, season, stats)
             var dreb = parseFloat(playerStats[team][index['DREB']]);
             var pf = parseFloat(playerStats[team][index['PF']]);
 
-            stats.push(new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, season))
+            stats.push(new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, season, playerID))
         });
 
     return stats;
 }
 
-function parseHistoricStats(data)
+function parseHistoricStats(data, since, to)
 {
+    if(isNaN(since))
+        since = -Infinity;
+
+    if(isNaN(to))
+        to = Infinity;
+
     var stats = {};
     Object.keys(data).forEach ( season =>
         {
+            var season_float = parseFloat(season);
+            if(season_float >= since && season_float <= to)
+            {
             var s = data[season];
             Object.keys(s).forEach(playerID =>
                 {
@@ -209,6 +223,7 @@ function parseHistoricStats(data)
                     }
 
                 });
+            }
         }
         );
         return stats;

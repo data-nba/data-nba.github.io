@@ -1,5 +1,6 @@
-var cat_stats = ["Rk", "Temp", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
-
+var single_stats = ["Rk", "Temp", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
+var combined_stats = ["Rk", "Temps", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
+var cat_stats = []
 function Filter(stat, operator, value)
 {
     this.stat = stat;
@@ -13,18 +14,29 @@ function parseData(data)
     var to_ = parseFloat( document.getElementById("season-to-filter").value.split('-')[0]);
 
     var stats = []
-    Object.keys(data).forEach(season =>
-        {
-            season_float = parseFloat(season)
-            if(season_float >= since && season_float <= to_)
-                parseSeasonStats(data[season], season_float, stats)
-        });
+    if(!document.getElementById("combined_season_radio").checked)
+    {
+        cat_stats = single_stats;
+        Object.keys(data).forEach(season =>
+            {
+                season_float = parseFloat(season)
+                if(season_float >= since && season_float <= to_)
+                    parseSeasonStats(data[season], season_float, stats)
+            });
+    }
+    else
+    {
+        cat_stats = combined_stats
+        stats = parseHistoricStats(data, since, to_)
+        return Object.values(stats)
+    }
 
-    return stats;
+    return  stats;
 }
 
 function research(stats, filters)
 {
+    console.log(stats)
     return stats.filter(function(element)
     {
         return filters.every(filter =>
@@ -87,7 +99,10 @@ function print_table(bodyTable, result)
                     if(perGame)
                         to_fixed = 1;
 
-                    if(stat != 'Rk' && stat != "Temp" && stat != 'Jugador' && stat != 'G')
+                    var div = document.createElement("div")
+                    div.className = "divtd"
+
+                    if(stat != 'Rk' && stat != "Temp" && stat != 'Jugador' && stat != 'G' && stat != "Temps")
                     {
                         if(isNaN(register[stat]))
                             td.innerHTML = "-"
@@ -98,12 +113,80 @@ function print_table(bodyTable, result)
                         td.innerHTML = register[stat];
 
                     tr.appendChild(td)
+
                 }
                 );
 
             bodyTable.appendChild(tr);
         });
+        var scroll = document.getElementById("scroll");
+        scroll.className = 'top-scroll-container';
+        var top = scroll.querySelector(".top-scroll");
+        top.style.width = bodyTable.clientWidth + "px"
 
+}
+
+function showTotalResults(result)
+{
+    document.getElementById("my_table").innerHTML = '<thead id="table_head"></thead><tbody id="table_body"></tbody>';
+
+    var head = document.getElementById("table_head");
+    var body = document.getElementById("table_body");
+
+    var trh = document.createElement("tr");
+    var th1 = document.createElement("th")
+    var th3 = document.createElement("th")
+    var th2 = document.createElement("th")
+
+    th1.innerHTML = "Rk"
+    th2.innerHTML = "Jugador"
+    th3.innerHTML = "Cantidad"
+
+    trh.appendChild(th1);
+    trh.appendChild(th2);
+    trh.appendChild(th3);
+    head.appendChild(trh)
+    dict = {}
+    result.forEach(element=>
+        {
+            if(dict[element['player_id']])
+                dict[element['player_id']].count++;
+
+            else
+                dict[element.player_id] = {'name':element.name, 'count':1};
+        });
+    
+    var rk = 1;
+    Object.keys(dict).sort(function(a, b)
+    {
+        if(dict[a].count > dict[b].count)
+            return -1;
+        
+        if(dict[a].count < dict[b].count)
+            return 1;
+
+       return 0;
+    }).slice(0, 50).forEach(element=>
+        {
+            var tr = document.createElement("tr");
+            var td1 = document.createElement("td");
+            var td2 = document.createElement("td");
+            var td3 = document.createElement("td");
+
+            td1.innerHTML = rk;
+            rk++;
+            td2.innerHTML = dict[element].name;
+            td3.innerHTML = dict[element].count;
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+            body.appendChild(tr)
+        });
+
+        var scroll = document.getElementById("scroll");
+        scroll.className = 'top-scroll-container';
+        var top = scroll.querySelector(".top-scroll");
+        top.style.width = body.clientWidth + "px"
 }
 
 function showResult(result, filters)
@@ -117,9 +200,10 @@ function showResult(result, filters)
     var trh = document.createElement("tr");
     cat_stats.forEach(element=>
         {
-            var td = document.createElement("td");
-            td.innerHTML = element;
-            trh.appendChild(td);
+            var th = document.createElement("th");
+            th.innerHTML = element;
+            
+            trh.appendChild(th);
             return 1;
         });
     head.appendChild(trh);
@@ -176,7 +260,14 @@ function get_results()
             filters.push(new Filter(s, op, parseFloat(v)));
     }
     var result = research(stats, filters);
-    showResult(result, filters)
+    if(!document.getElementById("total_seasons_radio").checked)
+        showResult(result, filters)
+    else{
+        console.log("yupiiii")
+        console.log(result)
+        showTotalResults(result)
+    }
+        
 }
 
 function remove_filter(ev)

@@ -327,10 +327,37 @@ backdrop-filter: blur(2.4px);
     background: #dd9043;
 }
 
+.table-zone{
+width: 65%;
+
+}
+
 .container-table
 {
-    width: 65%;
+    width: 100%;
     overflow: auto;
+
+    
+}
+.top-scroll-container{
+    margin: 0;
+    width: 100%;
+    overflow: auto;
+    height: 20px;
+   
+}
+
+.hide-scroll{
+    display: none;
+}
+
+.top-scroll{
+    height: 20px;
+}
+
+#my_table
+{
+    margin: 0 auto;
 }
 
 th{
@@ -343,11 +370,6 @@ td{
     
 }
 
-tr{
-    background: #dd9043;
-    
-    
-}
 
 
 
