@@ -120,9 +120,10 @@ function showInCategoria(stats, stat, totals)
         return statsToShow;
 }
 
-function parseSeasonStats(seasonStats)
+function parseSeasonStats(seasonStats, season, stats)
 {
-    var stats = []
+    if(!stats)
+      stats = []
     Object.keys(seasonStats).forEach(playerID =>
         {
             var playerStats = seasonStats[playerID]
@@ -155,7 +156,7 @@ function parseSeasonStats(seasonStats)
             var dreb = parseFloat(playerStats[team][index['DREB']]);
             var pf = parseFloat(playerStats[team][index['PF']]);
 
-            stats.push(new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, 1))
+            stats.push(new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, season))
         });
 
     return stats;

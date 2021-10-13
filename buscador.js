@@ -1,3 +1,5 @@
+var cat_stats = ["PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
+
 function Filter(stat, operator, value)
 {
     this.stat = stat;
@@ -5,9 +7,87 @@ function Filter(stat, operator, value)
     this.value = value;
 }
 
-function search(data, filter, perGame)
+function parseData(data)
 {
+    var since = parseFloat( document.getElementById("season-since-filter").value.split('-')[0]);
+    var to_ = parseFloat( document.getElementById("season-to-filter").value.split('-')[0]);
 
+    var stats = []
+    Object.keys(data).forEach(season =>
+        {
+            season_float = parseFloat(season)
+            if(season_float >= since && season_float <= to_)
+                parseSeasonStats(data[season], season_float, stats)
+        });
+
+    return stats;
+}
+
+function research(stats, filters)
+{
+    return stats.filter(function(element)
+    {
+        return filters.every(filter =>
+            {
+                var perGame = false;
+                var the_stat = filter.stat.split('/')[0];
+                console.log(filter.stat)
+                if(filter.stat.indexOf('/') != -1)
+                    perGame = true;
+
+                if(!perGame)
+                    the_stat = the_stat.split(' ')[0];
+
+                if(isNaN(element[the_stat]))
+                    return false;
+
+                
+                var g = 1;
+                if(perGame)
+                    g = element.G;
+
+                if(the_stat == "G")
+                    g = 1;
+
+                console.log(perGame)
+                if(filter.operator == 'greater_equal')
+                    return element[the_stat]/g.toFixed(1) >= filter.value;
+
+                if(filter.operator == 'minor')
+                    return element[the_stat]/g.toFixed(1) < filter.value;
+
+                if(filter.operator == 'equal')
+                    return element[the_stat]/g.toFixed(1) == filter.value;
+
+            });
+    });
+}
+
+function showResult(result)
+{
+    
+}
+
+function get_results()
+{
+    // var data = get_data() luego se pone
+    var stats = parseData(data)
+    var filters_input = document.getElementsByClassName("filter-added");
+    
+    var filters = []
+    for(let i = 0; i < filters_input.length; i++)
+    {
+        var s = filters_input[i].children[0].value;
+        var op = filters_input[i].children[1].value;
+        var v = filters_input[i].children[2].value;
+        console.log(s)
+        console.log(op)
+        console.log(v)
+        if( v != "")
+            filters.push(new Filter(s, op, parseFloat(v)));
+    }
+    var result = research(stats, filters);
+    showResult(result)
 }
 
 function remove_filter(ev)
@@ -35,14 +115,20 @@ function add_filter_options(select)
     {
         var option = document.createElement("option");
         option.value = stat;
-        option.innerHTML = "<p>" + stat + "/G</p>";
+        if(stat[stat.length - 1] != '%')
+            option.innerHTML = "<p>" + stat + "/G</p>";
+        else
+            option.innerHTML = "<p>" + stat + "</p>";
 
+        if(stat[stat.length - 1] != '%')
+            option.value += '/G'
         var optionTotals = document.createElement("option");
         optionTotals.value =  stat + ' (Total)';
         optionTotals.innerHTML = "<p>" + optionTotals.value + "</p>";
 
         select.appendChild(option);
-        select.appendChild(optionTotals);
+        if(stat[stat.length - 1] != '%')
+            select.appendChild(optionTotals);
     };
 
     add_stat('PTS', select);
@@ -90,7 +176,6 @@ function add_filter()
 
 function add_seasons_sinceTo_andSelectOrder()
 {
-    console.log(parseFloat("") + 5);
     add_filter_options(document.getElementById("order_by"));
 
     var since = document.getElementById("season-since-filter");

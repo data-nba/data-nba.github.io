@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="buscador.css">
     <link rel="stylesheet" href="head.css">
     <link rel="stylesheet" href="buscador_responsive.css">
+    <script src="datajson.js"></script>
+    <script src="data.js"></script>
     <script src="buscador.js"></script>
     
 
@@ -51,6 +53,8 @@
     function listen()
     {
         //agregar filtro
+
+        document.getElementById('get_result').addEventListener("click", get_results, false)
         document.querySelector(".add-filter").addEventListener('click', add_filter, false);
 
         var divSearchType = document.getElementsByClassName("container-radio-search")
@@ -193,7 +197,7 @@
                 
             </div>
 
-            <div id="get_result"> <p>Buscar</p> </div>
+            <div id="get_result"><p>Buscar</p> </div>
 
         </div>
 
