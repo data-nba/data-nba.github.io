@@ -83,26 +83,3 @@
     margin-top: 1%;
 }
 
-.footer{
-    width: 100%;
-    height: 8vh;
-    min-height: 30px;
-    background-image: linear-gradient( 135deg, #65FDF0 10%, #1D6FA3 100%);
-    display: flex;
-    align-items: center;
-}
-
-.line-footer
-{
-    width: 100%;
-    height: 2px;
-    background: black;
-}
-
-.content-footer{
-    font-size: 1.2rem;
-    width: fit-content;
-    
-    margin: auto;
-    color: white;
-}

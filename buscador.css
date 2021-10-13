@@ -9,6 +9,12 @@ body{
     font-family: 'Maven Pro', sans-serif;
 }
 
+.title-search
+{
+    text-align: center;
+    margin-top: 20px;
+}
+
 .search-type-container
 {
     width: 95%;
@@ -370,6 +376,9 @@ td{
     
 }
 
-
+.line-footer
+{
+    margin-top: 20px;
+}
 
 
