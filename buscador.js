@@ -1,4 +1,4 @@
-var cat_stats = ["PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
+var cat_stats = ["Rk", "Temp", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
 
 function Filter(stat, operator, value)
 {
@@ -31,7 +31,6 @@ function research(stats, filters)
             {
                 var perGame = false;
                 var the_stat = filter.stat.split('/')[0];
-                console.log(filter.stat)
                 if(filter.stat.indexOf('/') != -1)
                     perGame = true;
 
@@ -49,7 +48,6 @@ function research(stats, filters)
                 if(the_stat == "G")
                     g = 1;
 
-                console.log(perGame)
                 if(filter.operator == 'greater_equal')
                     return element[the_stat]/g.toFixed(1) >= filter.value;
 
@@ -63,9 +61,103 @@ function research(stats, filters)
     });
 }
 
-function showResult(result)
+function print_table(bodyTable, result)
 {
+    var perGame = document.getElementById("statsPerGameRadio").checked;
+    var rk = 1;
+        result.slice(0, 50).forEach(register => 
+        {
+            var tr = document.createElement("tr");
+            var tr = document.createElement("tr");
+            register['Rk'] = rk;
+            register['Temp'] = register.season;
+            register['Jugador'] = register.name;
+            rk++;
+            cat_stats.forEach(stat=>
+                {
+                    var td = document.createElement("td")
+                    var g = 1;
+                    if(perGame)
+                        g = register.G;
+
+                    if(stat.indexOf("%") != -1)
+                        g = 1;
+
+                    var to_fixed = 0;
+                    if(perGame)
+                        to_fixed = 1;
+
+                    if(stat != 'Rk' && stat != "Temp" && stat != 'Jugador' && stat != 'G')
+                    {
+                        if(isNaN(register[stat]))
+                            td.innerHTML = "-"
+                        else
+                            td.innerHTML = (register[stat]/g).toFixed(to_fixed);
+                    }
+                    else
+                        td.innerHTML = register[stat];
+
+                    tr.appendChild(td)
+                }
+                );
+
+            bodyTable.appendChild(tr);
+        });
+
+}
+
+function showResult(result, filters)
+{
+    document.getElementById("my_table").innerHTML = '<thead id="table_head"></thead><tbody id="table_body"></tbody>';
+
+    var head = document.getElementById("table_head");
+    var body = document.getElementById("table_body");
     
+
+    var trh = document.createElement("tr");
+    cat_stats.forEach(element=>
+        {
+            var td = document.createElement("td");
+            td.innerHTML = element;
+            trh.appendChild(td);
+            return 1;
+        });
+    head.appendChild(trh);
+
+    var order_by_perGame = false;
+    var statOrder = document.getElementById("order_by").value;
+    if(statOrder.indexOf('/') != -1)
+        order_by_perGame = true;
+
+    statOrder = statOrder.split('/')[0]
+    statOrder = statOrder.split(' ')[0]
+    print_table(body, result.sort(function(a, b){ 
+        var ag = 1;
+        var bg = 1;
+        if(order_by_perGame)
+        {
+            ag = a.G;
+            bg = b.G;
+        }
+
+        var mult = -1;
+        if(document.getElementById("asc_or_desc").value == 'a')
+            mult = 1;
+
+        if(isNaN(a[statOrder]))
+            return -1*mult;
+        
+        if(isNaN(b[statOrder]))
+            return mult;
+
+        if(a[statOrder]/ag > b[statOrder]/bg)
+            return mult;
+
+        if(a[statOrder]/ag < b[statOrder]/bg)
+            return -1*mult;
+
+        return 0;
+    }));
 }
 
 function get_results()
@@ -80,14 +172,11 @@ function get_results()
         var s = filters_input[i].children[0].value;
         var op = filters_input[i].children[1].value;
         var v = filters_input[i].children[2].value;
-        console.log(s)
-        console.log(op)
-        console.log(v)
         if( v != "")
             filters.push(new Filter(s, op, parseFloat(v)));
     }
     var result = research(stats, filters);
-    showResult(result)
+    showResult(result, filters)
 }
 
 function remove_filter(ev)
