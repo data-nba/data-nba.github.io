@@ -36,7 +36,6 @@ function parseData(data)
 
 function research(stats, filters)
 {
-    console.log(stats)
     return stats.filter(function(element)
     {
         return filters.every(filter =>
