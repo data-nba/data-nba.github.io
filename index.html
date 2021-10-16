@@ -21,7 +21,45 @@
 </head>
 
 <script>
-    window.onload = showSeasonLeaders
+
+    function hideOptions(e)
+    {
+        var cName = e.target.className.split(' ');
+        if(cName[0] == "line" || cName[0] == "three-lines" || cName[0] == "options-mobile")
+            return;
+        
+        document.querySelector(".options-mobile").classList.remove("options-mobile-on");
+        window.removeEventListener("click", hideOptions, false);
+    }
+
+    function show_hideOptions(e)
+    {
+        var optionsMobile = document.querySelector(".options-mobile");
+
+        if(optionsMobile.classList.length > 1)
+        {
+            optionsMobile.classList.remove("options-mobile-on");
+            window.removeEventListener("click", hideOptions, false);
+        }
+
+
+        else
+        {
+            optionsMobile.classList.add("options-mobile-on");
+            window.addEventListener("click", hideOptions, false);
+        }
+
+    }
+
+    function start()
+    {
+        document.querySelector(".three-lines").addEventListener("click", show_hideOptions, false)
+        showSeasonLeaders();
+    }
+
+
+    window.onload = start
+    window.onresize = ()=>{console.log(document.body.clientWidth)}
 </script>
 
 <body>
@@ -41,15 +79,24 @@
                 </div>
             </div>
 
-            <div class="three-lines">
+            <div id="three_lines" class="three-lines">
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>
             </div>
 
         </div>
-        
+        <div class="container-options-mobile">
+        <div class="options-mobile">
+            <a class="option mypage"><b>Inicio</b></a>
+            <a class="option" href="historicos.html"><b>Líderes históricos</b></a>
+            <a class="option" href="stats.html"><b>Estadísticas</b></a>
+            <a class="option" href="buscador.html"><b>Buscador PRO</b></a>
+        </div>
+    
+        </div>
 <div>
+   
     <div class="leaders-presentation-container">
         <h2 class="leaders-presentation">Líderes de la temporada</h2>
         <div class="totals-perGame">
