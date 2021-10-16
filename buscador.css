@@ -335,7 +335,7 @@ backdrop-filter: blur(2.4px);
 
 .table-zone{
 width: 65%;
-
+margin: 0 auto;
 }
 
 .container-table

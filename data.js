@@ -268,5 +268,3 @@ function showHistoricStats()
         }
     }
 }
-
-window.onresize = logo;

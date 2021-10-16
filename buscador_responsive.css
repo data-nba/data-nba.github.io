@@ -28,9 +28,17 @@
         width: 90%;
     }
 
-    .container-table{
-        width: 95%;
+    .table-zone
+    {
+        width: 100%;
     }
+
+    .container-table{
+        width: 100%;
+    }
+
+ 
+
 }
 
 @media (min-width: 400px) and (max-width: 499px)
@@ -62,8 +70,13 @@
     {
         width: 80%;
     }
+    .table-zone
+    {
+        width: 100%;
+    }
+
     .container-table{
-        width: 95%;
+        width: 100%;
     }
 }
 
@@ -97,8 +110,13 @@
         width: 70%;
     }
 
+    .table-zone
+    {
+        width: 100%;
+    }
+
     .container-table{
-        width: 95%;
+        width: 100%;
     }
 }
 
@@ -132,8 +150,13 @@
         width: 80%;
     }
 
+    .table-zone
+    {
+        width: 100%;
+    }
+
     .container-table{
-        width: 95%;
+        width: 100%;
     }
 }
 
@@ -178,7 +201,12 @@
    }
 
 
-    .container-table{
-        width: 95%;
-    }
+   .table-zone
+   {
+       width: 100%;
+   }
+
+   .container-table{
+       width: 100%;
+   }
 }
