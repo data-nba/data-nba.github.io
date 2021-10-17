@@ -285,14 +285,22 @@ function showResult(result, filters)
     }));
 }
 
-function get_results()
+function get_results(){
+    fetch('/data.txt').then(response => response.json()).then(d => get_result(d)).catch(e=>
+    {document.querySelector('.loading').innerHTML = "Algo salió mal, intenta de nuevo";
+   
+
+});
+}
+
+function get_result(data)
 {
     // var data = get_data() luego se pone
-    var data = {};
+    
     var loading = document.querySelector(".loading");
     loading.style.display = '';
     loading.innerHTML = "Cargando ..."
-    data((d)=>{data = d});
+    
     loading.style.display = 'none';
     var stats = parseData(data)
     var filters_input = document.getElementsByClassName("filter-added");

@@ -1,5 +1,5 @@
 var index = {'G':0, 'MP':2, 'FG':3, 'FGA':4, '3P':6, '3PA':7, 'FT':10, 'FTA':11, 'OREB':13, 'DREB':14, 'REB':15, 'AST':16, 'STL':17, 'BLK':18, 'TOV':19, "PF":20, 'PTS':21 };
-console.log(NaN < 1)
+
 function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP, season, player_id, FT, FTA)
 {
     this.Temps = 1;
@@ -246,7 +246,9 @@ function parseHistoricStats(data, since, to)
 
 function showSeasonLeaders(data)
 {
-    season = '2021';
+ 
+    document.querySelector(".loading").style.display = 'none'
+    var season = '2021';
     var seasonStats = data[season];
     var stats = parseSeasonStats(seasonStats);
 
@@ -266,8 +268,13 @@ function showSeasonLeaders(data)
 
 }
 
-function showHistoricStats()
+function showHistoricStats(data)
 {
+    if(data === undefined)
+    {
+        document.querySelector(".loading").innerHTML = 'Algo salió mal, intenta refrescar la página';
+        return;
+    }
     var stats = parseHistoricStats(data);
     console.log(Object.values(stats));
     var content = document.getElementsByClassName("leader");
