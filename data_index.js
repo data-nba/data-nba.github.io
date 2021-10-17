@@ -12,3 +12,5 @@ function data()
  
  xhr.send(null)
 }
+
+window.onload = data;
