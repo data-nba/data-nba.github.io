@@ -18,7 +18,7 @@
     <script src="datajson.js"></script>
     <script src="data.js"></script>
     <script src="options.js"></script>
-
+    <script src="data_index.js"></script>
     <style>
         .line-categoria{
             width: 100%;
@@ -29,7 +29,7 @@
 
 <script>
 
-    window.onload = showHistoricStats
+    window.onload = data.bind(this, parseHistoricStats)
 </script>
 
 <body>
@@ -63,6 +63,7 @@
     
         </div>
 <div>
+    <h3 class="loading">Cargando ...</h3>
     <div class="leaders-presentation-container">
         <h2 class="leaders-presentation">Líderes históricos</h2>
         <div class="totals-perGame">

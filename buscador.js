@@ -288,6 +288,12 @@ function showResult(result, filters)
 function get_results()
 {
     // var data = get_data() luego se pone
+    var data = {};
+    var loading = document.querySelector(".loading");
+    loading.style.display = '';
+    loading.innerHTML = "Cargando ..."
+    data((d)=>{data = d});
+    loading.style.display = 'none';
     var stats = parseData(data)
     var filters_input = document.getElementsByClassName("filter-added");
     

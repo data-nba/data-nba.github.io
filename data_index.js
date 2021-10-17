@@ -1,16 +1,23 @@
-function data()
+function data(callback)
 {
     var xhr = new XMLHttpRequest();
     xhr.open("GET","data.txt", true);
     xhr.onreadystatechange = function()
     {  if (xhr.readyState === 4) {
-        console.log(xhr.responseText)
-        var data = JSON.parse(xhr.responseText);
-        showSeasonLeaders(data)
+        var status = xhr.status; 
+        if ((status >= 200 && status < 300) || (status === 304))
+        {
+            document.querySelector('.loading').style.display = 'none'
+            var data = JSON.parse(xhr.responseText);
+            callback(data)
+        }
+        else
+        {
+            document.querySelector('.loading').innerHTML = "Ocurrió un error, intenta recargar la página"
+        }
+
     }
- }; 
- 
+ };
+
  xhr.send(null)
 }
-
-window.onload = data;
