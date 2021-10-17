@@ -1,5 +1,8 @@
-var xhr = new XMLHttpRequest();
-xhr.open("GET","fichero.txt", false);
-xhr.send(null);
-var data = JSON.parse(xhr.responseText)
+var data = {}
+
+fetch('/data.txt', { method: 'get' }).then(
+    function(respuesta) {
+        data = respuesta.json()
+        showSeasonLeaders()
+}).catch(function(err) { // Error :( })
 
