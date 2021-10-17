@@ -1,5 +1,5 @@
-var single_stats = ["Rk", "Temp", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
-var combined_stats = ["Rk", "Temps", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
+var single_stats = ["Rk", "Temp", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "3P", "3PA", "3P%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
+var combined_stats = ["Rk", "Temps", "Jugador", "G", "MP",  "PTS", "REB", "AST", "OREB", "DREB", "STL", "BLK", "FG", "FGA", "FG%", "3P", "3PA", "3P%", "eFG%", "FT", "FTA", "FT%", "TS%", "TOV", "PF"]
 var cat_stats = []
 function Filter(stat, operator, value)
 {
@@ -197,7 +197,55 @@ function showResult(result, filters)
     
 
     var trh = document.createElement("tr");
-    cat_stats.forEach(element=>
+    var order_by_perGame = false;
+    var statOrder = document.getElementById("order_by").value;
+    if(statOrder.indexOf('/') != -1)
+        order_by_perGame = true;
+
+    statOrder = statOrder.split('/')[0]
+    statOrder = statOrder.split(' ')[0]
+    var cat_stats_ordered = cat_stats.sort(function(a, b)
+    {
+        if(a == "Rk")
+            return -1;
+
+        if(b == "Rk")
+            return 1;
+
+        if(a == "Temps" || a == "Temp")
+            return -1;
+
+        if(b == "Temps" || b == "Temp")
+            return 1;
+
+        if(a == "Jugador")
+            return -1;
+
+        if(b == "Jugador")
+            return 1;
+
+
+
+        if(a == statOrder)
+            return -1;
+
+        if(b == statOrder)
+            return 1;
+
+        for(let i = 0; i < filters.length; i++)
+        {
+            var s = filters[i].stat.split(' ')[0].split('/')[0]
+
+            if(s == a)
+                return -1;
+
+            if(s == b)
+                return 1;
+        }
+
+        return 0;
+    });
+    cat_stats_ordered.forEach(element=>
         {
             var th = document.createElement("th");
             th.innerHTML = element;
@@ -207,13 +255,7 @@ function showResult(result, filters)
         });
     head.appendChild(trh);
 
-    var order_by_perGame = false;
-    var statOrder = document.getElementById("order_by").value;
-    if(statOrder.indexOf('/') != -1)
-        order_by_perGame = true;
-
-    statOrder = statOrder.split('/')[0]
-    statOrder = statOrder.split(' ')[0]
+    
     print_table(body, result.sort(function(a, b){ 
         var ag = 1;
         var bg = 1;

@@ -30,7 +30,7 @@
         var radio = this.querySelector("input");
         radio.checked = true;
         this.className += ' selected';
-
+        console.log(this.id)
         var divs = document.getElementsByClassName("container-radio-search");
         for(var i = 0; i < divs.length; i++)
         {
@@ -38,6 +38,17 @@
                 divs[i].className = divs[i].className.split(' ')[0]
         }
 
+        var orderby = document.getElementById("container-order-by");
+        var typestats = document.getElementById("container-perGame-total");
+        if(this.id == "total_seasons")
+        {
+            orderby.style.display = 'none';
+            typestats.style.display = 'none';
+        }
+        else{
+            orderby.style.display = '';
+            typestats.style.display = '';
+        }
     }
 
     function clickStatType()
@@ -69,6 +80,7 @@
         s2.scrollLeft = s1.scrollLeft;
     }
 
+
     function listen()
     {
         //agregar filtro
@@ -77,7 +89,7 @@
         document.querySelector(".add-filter").addEventListener('click', add_filter, false);
         document.querySelector(".container-table").addEventListener('scroll', onScroll, false)
         document.getElementById("scroll").addEventListener('scroll', onScroll, false)
-
+    
         var divSearchType = document.getElementsByClassName("container-radio-search")
         divSearchType[0].querySelector("input").checked = true;
         divSearchType[0].className += ' selected'
@@ -122,7 +134,7 @@
             <div class="options">
                 <a class="option" href="index.html"><b>Inicio</b></a>
                 <a class="option" href="historicos.html"><b>Líderes históricos</b></a>
-                <a class="option" href="stats.html"><b>Estadísticas</b></a>
+                
                 <a class="option mypage"><b>Buscador PRO</b></a>
             </div>
 
@@ -140,7 +152,7 @@
         <div class="options-mobile">
             <a class="option mypage"><b>Inicio</b></a>
             <a class="option" href="historicos.html"><b>Líderes históricos</b></a>
-            <a class="option" href="stats.html"><b>Estadísticas</b></a>
+            
             <a class="option" href="buscador.html"><b>Buscador PRO</b></a>
         </div>
     
@@ -195,7 +207,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container-filter-item">
+            <div id="container-perGame-total" class="container-filter-item">
                 <div class="container-title-filter-item">
                     <h2 >Estadísticas</h2>
                 </div>
@@ -223,7 +235,7 @@
 
             </div>
 
-            <div class="container-filter-item">
+            <div id="container-order-by" class="container-filter-item">
                 <div class="container-title-filter-item">
                     <h2>Ordenar por</h2>
                 </div>
@@ -264,7 +276,6 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.0/font/bootstrap-icons.css">
         <i class="bi bi-twitter"></i>
         <i class="bi bi-telegram"></i>
-        <i class="bi bi-envelope-fill"></i>
     </div>
 </div>
 </body>

@@ -1,6 +1,6 @@
 var index = {'G':0, 'MP':2, 'FG':3, 'FGA':4, '3P':6, '3PA':7, 'FT':10, 'FTA':11, 'OREB':13, 'DREB':14, 'REB':15, 'AST':16, 'STL':17, 'BLK':18, 'TOV':19, "PF":20, 'PTS':21 };
 console.log(NaN < 1)
-function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP, season, player_id)
+function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP, season, player_id, FT, FTA)
 {
     this.Temps = 1;
     this.player_id = player_id;
@@ -16,25 +16,31 @@ function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DRE
     this.DREB = DREB;
     this.FG = FG;
     this.FGA = FGA;
-    this['FG%'] = (!isNaN(this.FG) && !isNaN(this.FGA)) ? this.FG/this.FGA : NaN;
+    this.FT = FT;
+    this.FTA = FTA;
+
+    this["FT%"] = (!isNaN(this.FT) && !isNaN(this.FTA))?this.FT/this.FTA*100:NaN;
+    this['FG%'] = (!isNaN(this.FG) && !isNaN(this.FGA)) ? this.FG/this.FGA*100 : NaN;
     this['3PA'] = _3PA;
-    this['3P%'] = (!isNaN(this['3P']) && !isNaN(this['3PA'])) ? this['3P']/this['3PA'] : NaN;
-    this['eFG%'] = (!isNaN(this.FG) && !isNaN(this.FGA)) ? this.FG : NaN;
+    this['3P%'] = (!isNaN(this['3P']) && !isNaN(this['3PA'])) ? this['3P']/this['3PA']*100 : NaN;
+    this['eFG%'] = (!isNaN(this.FG) && !isNaN(this.FGA)) ? this["FG%"] : NaN;
 
     if(!isNaN(this['eFG%'])){
-        this['eFG%'] = (!isNaN(this['3P'])) ? (this.FG + 0.5*this['3P'])/this.FGA : this.FG/this.FGA;
+        this['eFG%'] = (!isNaN(this['3P'])) ? (this.FG + 0.5*this['3P'])/this.FGA*100 : this["FG%"];
     }
-    
+
+    this["TS%"] = (!isNaN(this.FTA) && !isNaN(this.FGA)) ? this.PTS/(2*(this.FGA + 0.44*this.FTA))*100: NaN;
+
     this.TOV = TOV;
     this.PF = PF;
     this.MP = MP;
     this.season = season;
 
     var me = this;
-    this.sum = function(g, pts, reb, ast, stl, blk, _3p, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP)
+    this.sum = function(g, pts, reb, ast, stl, blk, _3p, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP, FT, FTA)
     {
 
-        this.Temps++;
+        me.Temps++;
         me.G += g;
         if(!isNaN(pts))
             me.PTS = (isNaN(me.PTS)) ? pts : me.PTS + pts;
@@ -79,13 +85,22 @@ function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DRE
         if(! isNaN(MP))
             me.MP = (isNaN(me.MP)) ? MP:me.MP + MP;
 
-        this['FG%'] = (!isNaN(this.FG) && !isNaN(this.FGA)) ? this.FG/this.FGA : NaN;
-        this['3P%'] = (!isNaN(this['3P']) && !isNaN(this['3PA'])) ? this['3P']/this['3PA'] : NaN;
-        this['eFG%'] = (!isNaN(this.FG) && !isNaN(this.FGA)) ? this.FG : NaN;
+            if(! isNaN(FT))
+            me.FT = (isNaN(me.FT)) ? FT:me.FT + FT;
 
-        if(!isNaN(this['eFG%'])){
-            this['eFG%'] = (!isNaN(this['3P'])) ? (this.FG + 0.5*this['3P'])/this.FGA : this.FG/this.FGA;
+            if(! isNaN(FTA))
+            me.FTA = (isNaN(me.FTA)) ? FTA:me.FTA + FTA;
+
+        me["FT%"] = (!isNaN(me.FT) && !isNaN(me.FTA))?me.FT/me.FTA*100:NaN;
+        me['FG%'] = (!isNaN(me.FG) && !isNaN(me.FGA)) ? me.FG/me.FGA*100 : NaN;
+        me['3P%'] = (!isNaN(me['3P']) && !isNaN(me['3PA'])) ? me['3P']/me['3PA']*100 : NaN;
+        me['eFG%'] = (!isNaN(me.FG) && !isNaN(me.FGA)) ? me["FG%"] : NaN;
+
+        if(!isNaN(me['eFG%'])){
+            me['eFG%'] = (!isNaN(me['3P'])) ? (me.FG + 0.5*me['3P'])/me.FGA*100 : NaN;
         }
+
+        me["TS%"] = (!isNaN(me.FTA) && !isNaN(me.FGA)) ? me.PTS/(2*(me.FGA + 0.44*me.FTA))*100: NaN;
     }
 }
 
@@ -161,7 +176,7 @@ function parseSeasonStats(seasonStats, season, stats)
             var dreb = parseFloat(playerStats[team][index['DREB']]);
             var pf = parseFloat(playerStats[team][index['PF']]);
 
-            stats.push(new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, season, playerID))
+            stats.push(new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, season, playerID, ft, fta))
         });
 
     return stats;
@@ -215,11 +230,11 @@ function parseHistoricStats(data, since, to)
                 var pf = parseFloat(playerStats[team][index['PF']]);
 
                     if(stats[playerID]){
-                        stats[playerID].sum(g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp)
+                        stats[playerID].sum(g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, ft, fta)
                     }
 
                     else{
-                        stats[playerID] = new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, 1);
+                        stats[playerID] = new singleSeasonStat(name,g, pts, reb, ast, stl, blk, _3p, oreb, dreb, fg, fga, _3pa, tov, pf, mp, 1, playerID, ft, fta);
                     }
 
                 });
