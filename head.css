@@ -194,17 +194,18 @@ padding-bottom: 10px;
     
 }
 
-.content-footer>i{
-    cursor: pointer;    
+.content-footer>a
+{
+    color: black;
 }
 
 
-.content-footer>i:hover
+.content-footer>a:hover
 {
     color: orange;
 }
 
-.content-footer>i:active
+.content-footer>a:active
 {
     color: orange;
 }

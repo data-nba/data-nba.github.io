@@ -244,7 +244,7 @@ function parseHistoricStats(data, since, to)
         return stats;
 }
 
-function showSeasonLeaders()
+function showSeasonLeaders(data)
 {
     season = '2021';
     var seasonStats = data[season];
