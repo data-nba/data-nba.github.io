@@ -1,5 +1,6 @@
 function good(callback, data)
 {
+    console.log("data")
     document.querySelector('.loading').style.display = 'none'
     var data = JSON.parse(xhr.responseText);
     callback(data)
