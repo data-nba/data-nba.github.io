@@ -285,6 +285,29 @@ function showResult(result, filters)
     }));
 }
 
+function data()
+{
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET","data.txt", true);
+    xhr.onreadystatechange = function()
+    {  if (xhr.readyState === 4) {
+        var status = xhr.status;
+        if ((status >= 200 && status < 300) || (status === 304))
+        {
+            var data = JSON.parse(xhr.responseText);
+            return data;
+        }
+        else
+        {
+            return null;
+        }
+
+    }
+ };
+
+ xhr.send(null)
+}
+
 function get_results()
 {
     // var data = get_data() luego se pone
@@ -292,7 +315,12 @@ function get_results()
     var loading = document.querySelector(".loading");
     loading.style.display = '';
     loading.innerHTML = "Cargando ..."
-    data((d)=>{data = d});
+    data = data()
+    if(!data)
+    {
+        loading.innerHTML = "Occurrió un problema, intenta de nuevo"
+        return;
+    }
     loading.style.display = 'none';
     var stats = parseData(data)
     var filters_input = document.getElementsByClassName("filter-added");
