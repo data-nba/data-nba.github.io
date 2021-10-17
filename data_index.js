@@ -7,11 +7,12 @@ function good(callback, data)
 
 function notGood()
 {
-
+console.log("not good")
 }
 
 function data(callback)
 {
+    console.log("ok")
     var xhr = new XMLHttpRequest();
     xhr.open("GET","data.txt", true);
     xhr.onreadystatechange = function()
