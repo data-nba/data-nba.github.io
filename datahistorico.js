@@ -1,6 +1,6 @@
 function fetchData()
 {
-    var interval = setInterval(loadingAnimation, 300);
+    var interval = setInterval(loadingAnimation, 200);
     fetch('/data.txt').then(res=>res.json()).then((result)=>{
     clearInterval(interval)
     showHistoricStats(result)}, (error)=>{

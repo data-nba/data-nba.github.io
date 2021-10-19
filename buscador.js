@@ -287,7 +287,7 @@ function showResult(result, filters)
 
 function get_results(){
 
-var interval = setInterval(loadingAnimation, 300);
+    var interval = setInterval(loadingAnimation, 200);
 
     var loading = document.querySelector(".loading");
     loading.style.display = '';
