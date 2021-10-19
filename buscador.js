@@ -287,20 +287,19 @@ function showResult(result, filters)
 
 function get_results(){
 
-    var interval = setInterval(loadingAnimation, 200);
-
     var loading = document.querySelector(".loading");
     loading.style.display = '';
-    loading.innerHTML = "Cargando"
+    loading.innerHTML = "Cargando";
+    var interval = setInterval(loadingAnimation, 200);
     fetch('/data.txt').then(res=>res.json()).then((result)=>{
     clearInterval(interval)
     get_result(result)}, (error)=>{
         clearInterval(interval)
-        document.querySelector(".loading").innerHTML = 
+        loading.innerHTML = 
     "Ocurrió un error, intenta de nuevo";}).catch(()=>
     {
         clearInterval(interval)
-        document.querySelector(".loading").innerHTML = 
+        loading.innerHTML = 
     "Ocurrió un error, intenta de nuevo";
     }
     );
@@ -312,6 +311,7 @@ function get_result(data)
     // var data = get_data() luego se pone
     
     
+    var loading = document.querySelector(".loading");
     loading.style.display = 'none';
     var stats = parseData(data)
     var filters_input = document.getElementsByClassName("filter-added");
