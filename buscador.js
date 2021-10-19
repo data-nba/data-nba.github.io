@@ -286,20 +286,31 @@ function showResult(result, filters)
 }
 
 function get_results(){
-    fetch('/data.txt').then(response => response.json()).then(d => get_result(d)).catch(e=>
-    {document.querySelector('.loading').innerHTML = "Algo salió mal, intenta de nuevo";
-   
 
-});
+var interval = setInterval(loadingAnimation, 300);
+
+    var loading = document.querySelector(".loading");
+    loading.style.display = '';
+    loading.innerHTML = "Cargando"
+    fetch('/data.txt').then(res=>res.json()).then((result)=>{
+    clearInterval(interval)
+    get_result(result)}, (error)=>{
+        clearInterval(interval)
+        document.querySelector(".loading").innerHTML = 
+    "Ocurrió un herror, intenta de nuevo";}).catch(()=>
+    {
+        clearInterval(interval)
+        document.querySelector(".loading").innerHTML = 
+    "Ocurrió un herror, intenta de nuevo";
+    }
+    );
+
 }
 
 function get_result(data)
 {
     // var data = get_data() luego se pone
     
-    var loading = document.querySelector(".loading");
-    loading.style.display = '';
-    loading.innerHTML = "Cargando ..."
     
     loading.style.display = 'none';
     var stats = parseData(data)

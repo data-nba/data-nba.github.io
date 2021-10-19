@@ -1,5 +1,19 @@
 var index = {'G':0, 'MP':2, 'FG':3, 'FGA':4, '3P':6, '3PA':7, 'FT':10, 'FTA':11, 'OREB':13, 'DREB':14, 'REB':15, 'AST':16, 'STL':17, 'BLK':18, 'TOV':19, "PF":20, 'PTS':21 };
 
+
+function loadingAnimation()
+{
+    var loading = document.querySelector(".loading");
+
+    var text = loading.innerHTML;
+    if(text == "Cargando...")
+        loading.innerHTML = "Cargando";
+    else
+    {
+        loading.innerHTML += ".";
+    }
+}
+
 function singleSeasonStat(player_name,g, PTS, REB, AST, STL, BLK, _3P, OREB, DREB, FG, FGA, _3PA, TOV, PF, MP, season, player_id, FT, FTA)
 {
     this.Temps = 1;
