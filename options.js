@@ -32,7 +32,7 @@
     function start()
     {
         document.querySelector(".three-lines").addEventListener("click", show_hideOptions, false)
-        showSeasonLeaders();
+        
     }
 
     window.addEventListener("load", start, false);
