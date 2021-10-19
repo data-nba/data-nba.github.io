@@ -6,11 +6,11 @@ function fetchData()
     showHistoricStats(result)}, (error)=>{
         clearInterval(interval)
         document.querySelector(".loading").innerHTML = 
-    "Ocurrió un herror, intenta recargar la página";}).catch(()=>
+    "Ocurrió un error, intenta recargar la página";}).catch(()=>
     {
         clearInterval(interval)
         document.querySelector(".loading").innerHTML = 
-    "Ocurrió un herror, intenta recargar la página";
+    "Ocurrió un error, intenta recargar la página";
     }
     );
 }

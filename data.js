@@ -284,11 +284,8 @@ function showSeasonLeaders(data)
 
 function showHistoricStats(data)
 {
-    if(data === undefined)
-    {
-        document.querySelector(".loading").innerHTML = 'Algo salió mal, intenta refrescar la página';
-        return;
-    }
+    document.querySelector(".loading").style.display = 'none'
+  
     var stats = parseHistoricStats(data);
     console.log(Object.values(stats));
     var content = document.getElementsByClassName("leader");

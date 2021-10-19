@@ -297,11 +297,11 @@ var interval = setInterval(loadingAnimation, 300);
     get_result(result)}, (error)=>{
         clearInterval(interval)
         document.querySelector(".loading").innerHTML = 
-    "Ocurrió un herror, intenta de nuevo";}).catch(()=>
+    "Ocurrió un error, intenta de nuevo";}).catch(()=>
     {
         clearInterval(interval)
         document.querySelector(".loading").innerHTML = 
-    "Ocurrió un herror, intenta de nuevo";
+    "Ocurrió un error, intenta de nuevo";
     }
     );
 
