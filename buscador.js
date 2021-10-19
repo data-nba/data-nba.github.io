@@ -296,8 +296,11 @@ function get_results(){
     get_result(result)}, (error)=>{
         clearInterval(interval)
         loading.innerHTML = 
-    "Ocurrió un error, intenta de nuevo";}).catch(()=>
+    "Ocurrió un error, intenta de nuevo";
+        console.log(error)
+}).catch((e)=>
     {
+        console.log(e);
         clearInterval(interval)
         loading.innerHTML = 
     "Ocurrió un error, intenta de nuevo";
