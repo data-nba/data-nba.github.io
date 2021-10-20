@@ -262,7 +262,7 @@ function showSeasonLeaders(data)
 {
  
     document.querySelector(".loading").style.display = 'none'
-    var season = '2021';
+    var season = '2022';
     var seasonStats = data[season];
     var stats = parseSeasonStats(seasonStats);
 

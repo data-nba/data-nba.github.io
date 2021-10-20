@@ -1,7 +1,7 @@
 function fetchData()
 {
     var interval = setInterval(loadingAnimation, 200);
-    fetch('/data.txt').then(res=>res.json()).then((result)=>{
+    fetch('/dataseason.txt').then(res=>res.json()).then((result)=>{
     clearInterval(interval)
     showSeasonLeaders(result)}, (error)=>{
         clearInterval(interval)
